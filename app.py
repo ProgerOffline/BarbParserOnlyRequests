@@ -136,7 +136,8 @@ if __name__ == "__main__":
     while True:
         try:
             asyncio.run(main())
-        except:
+        except Exception as e:
+            print(e)
             offset = open("offset.txt", "r")
             offset = int(offset.read())
             table = open("Москва.csv", "r")
