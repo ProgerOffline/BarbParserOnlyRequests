@@ -139,7 +139,7 @@ if __name__ == "__main__":
         except:
             offset = open("offset.txt", "r")
             offset = int(offset.read())
-            table = open("Москва370.csv", "r")
+            table = open("Москва.csv", "r")
             reader = csv.reader(table)
             phones = [ row for row in reader ]
 
