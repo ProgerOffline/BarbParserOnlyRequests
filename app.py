@@ -114,16 +114,16 @@ async def get_token():
 async def main():
     offset = open("offset.txt")
     offset = int(offset.read())
-    MASTERS_IDS = MASTERS_IDS[offset-1:]
+    masters_ids = MASTERS_IDS[offset-1:]
 
     table = open("Москва.csv", "w")
     writer = csv.writer(table)
-    bar = ShadyBar("Parsing phones in Moscow", max=len(MASTERS_IDS))
+    bar = ShadyBar("Parsing phones in Moscow", max=len(masters_ids))
 
-    for i in range(0, len(MASTERS_IDS), 10):
+    for i in range(0, len(masters_ids), 10):
         token = await get_token()
 
-        ids = MASTERS_IDS[i:i+10]
+        ids = masters_ids[i:i+10]
         phones = await get_phones(token, ids)
         
         [ writer.writerow([phone]) for phone in phones ]
