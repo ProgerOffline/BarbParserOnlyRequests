@@ -112,6 +112,10 @@ async def get_token():
 
 
 async def main():
+    offset = open("offset.txt")
+    offset = int(offset.read())
+    MASTERS_IDS = MASTERS_IDS[offset-1:]
+
     table = open("Москва.csv", "w")
     writer = csv.writer(table)
     bar = ShadyBar("Parsing phones in Moscow", max=len(MASTERS_IDS))
@@ -129,4 +133,23 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    while True:
+        try:
+            asyncio.run(main())
+        except:
+            offset = open("offset.txt", "r")
+            offset = int(offset.read())
+            table = open("Москва370.csv", "r")
+            reader = csv.reader(table)
+            phones = [ row for row in reader ]
+
+            new_table = open(f"Москва{offset}_{len(phones)}.csv", "w")
+            writer = csv.writer(new_table)
+
+            [ writer.writerow(phone) for phone in phones ]
+
+            table.close()
+            new_table.close()
+
+            with open("offset.txt", "w") as file:
+                file.write(str(len(phones)))
