@@ -116,7 +116,6 @@ async def main():
     offset = int(offset.read())
     masters_ids = MASTERS_IDS[offset-1:]
 
-    print(masters_ids)
     table = open("Москва.csv", "w")
     writer = csv.writer(table)
     bar = ShadyBar("Parsing phones in Moscow", max=len(masters_ids))
