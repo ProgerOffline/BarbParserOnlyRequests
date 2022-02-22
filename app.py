@@ -95,7 +95,7 @@ async def get_phones(token, ids):
 async def get_token():
     async with aiohttp.ClientSession() as session:
         response = await session.get(
-            url="https://barb.pro/ru-ru/msk/master",
+            url="https://barb.pro/ru-ru/spb/master",
             headers=token_headers,
             ssl=False,
         )
