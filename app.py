@@ -116,9 +116,9 @@ async def main():
     offset = int(offset.read())
     masters_ids = MASTERS_IDS[offset-1:]
 
-    table = open("Москва.csv", "w")
+    table = open("Питер.csv", "w")
     writer = csv.writer(table)
-    bar = ShadyBar("Parsing phones in Moscow", max=len(masters_ids))
+    bar = ShadyBar("Parsing phones in Peter", max=len(masters_ids))
 
     for i in range(0, len(masters_ids), 10):
         token = await get_token()
@@ -140,11 +140,11 @@ if __name__ == "__main__":
             print(e)
             offset = open("offset.txt", "r")
             offset = int(offset.read())
-            table = open("Москва.csv", "r")
+            table = open("Питер.csv", "r")
             reader = csv.reader(table)
             phones = [ row for row in reader ]
 
-            new_table = open(f"Москва{offset}_{len(phones)}.csv", "w")
+            new_table = open(f"Питер{offset}_{len(phones)}.csv", "w")
             writer = csv.writer(new_table)
 
             [ writer.writerow(phone) for phone in phones ]
