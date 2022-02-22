@@ -118,7 +118,7 @@ async def main():
 
     table = open("Москва.csv", "w")
     writer = csv.writer(table)
-    bar = ShadyBar("Parsing phones in Moscow", max=len(masters_ids))
+    bar = ShadyBar("Parsing phones in Peter", max=len(masters_ids))
 
     for i in range(0, len(masters_ids), 10):
         token = await get_token()
